@@ -1,7 +1,7 @@
 import scan from "../assets/scan.png"
 import ride from "../assets/ride.png"
 import locate from "../assets/locate.png"
-
+import { motion } from "framer-motion"
 type InfosType = {
   title: string;
   image: string;
@@ -34,14 +34,18 @@ const AppInfo = () => {
       </div>
       <div className="grid w-full min-h-[3/5] grid-cols-1 md:grid-cols-3 px-[5%] md:px-[10%] gap-4">
         {infos.map((info: InfosType, index: number) => (
-          <div key={index} className="aspect-square bg-[#EEE] flex flex-col justify-center items-center rounded-2xl">
+          <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.3 }}
+            key={index} className="aspect-square bg-[#EEE] flex flex-col justify-center items-center rounded-2xl">
             <img src={info.image} className="w-full rounded-t-2xl object-cover h-3/5" />
             <div className="flex h-2/5 bg-white rounded-b-2xl justify-evenly px-[5%] gap-8 items-start pt-[5%]">
               <p className="text-[#00B200] text-lg font-light">{info.title}</p>
               <p className="font-light text-base text-black">
                 {info.text}</p>
             </div>
-          </div>
+          </motion.div>
 
         ))}
       </div>

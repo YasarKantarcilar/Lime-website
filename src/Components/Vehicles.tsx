@@ -1,5 +1,6 @@
 import vehicle1 from "../assets/vehicle1.png"
 import vehicle2 from "../assets/vehicle2.png"
+import { motion } from "framer-motion"
 type VehicleType = {
   name: string;
   image: string
@@ -17,10 +18,15 @@ const Vehicles = () => {
       </div>
       <div className="grid w-full min-h-[3/5] grid-cols-1 sm:grid-cols-2 px-[5%] sm:px-[15%] md:px-[25%] gap-4">
         {vehiclesData.map((vehicle: VehicleType, index: number) => (
-          <div className="aspect-square bg-[#EEE] flex flex-col justify-center items-center rounded-2xl" key={index}>
+          <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.3 }}
+
+            className="aspect-square bg-[#EEE] flex flex-col justify-center items-center rounded-2xl" key={index}>
             <img src={vehicle.image} className="w-full h-4/5 object-contain" alt="each vehicle" />
             <p className="text-lg font-normal">{vehicle.name}</p>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

@@ -1,3 +1,4 @@
+import { motion } from "framer-motion"
 import safety from "../assets/safety.png"
 import sustainability from "../assets/sustainability.png"
 import community from "../assets/community.png"
@@ -30,10 +31,15 @@ const Principles = () => {
       </div>
       <div className=" w-full scrollable-container min-h-[3/5] pb-8 flex justify-start px-[5%] md:px-[10%] items-center overflow-x-scroll gap-4">
         {principlesData.map((principle: PrincipleType, index: number) => (
-          <div key={index} className="min-w-[65vw] md:min-w-[30vw] aspect-square flex flex-col rounded-2xl">
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.3 }}
+
+            key={index} className="min-w-[65vw] md:min-w-[30vw] aspect-square flex flex-col rounded-2xl">
             <img className="w-full aspect-[10/8] object-cover bg-black rounded-2xl" src={principle.image} />
             <p className="font-light text-xl text-black pt-[5%] underline underline-offset-8">{principle.name}</p>
-          </div>
+          </motion.div>
 
         ))}
       </div>
